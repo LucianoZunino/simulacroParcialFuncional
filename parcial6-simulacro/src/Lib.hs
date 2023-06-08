@@ -62,3 +62,21 @@ llaveFrancesaConMangoDeHierro = Herramienta {
 
 inflacion :: Float -> Herramienta -> Herramienta
 inflacion valorAgregado llave = llave { precio = valorAgregado + (precio llave)} 
+
+
+--------------
+-- PUNTO 02 --
+--------------
+
+tiene :: String -> Plomero -> Bool
+-- tiene denominacionHerramienta plomero = any  (== denominacionHerramienta) . denominacion . cajaDeHerramientas  plomero
+tiene denominacionBuscada plomero =  any (== denominacionBuscada) . map denominacion $ (cajaDeHerramientas plomero)
+
+esMalvado :: Plomero -> Bool
+esMalvado plomero = tieneSufijoWa plomero
+
+tieneSufijoWa :: Plomero -> Bool
+tieneSufijoWa plomero = take 2 (nombre plomero) == "Wa"
+
+puedeComprar :: Herramienta -> Plomero -> Bool
+puedeComprar herramienta plomero = precio herramienta < dinero plomero
